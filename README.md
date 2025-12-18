@@ -1,122 +1,97 @@
-# 题库合并工具 (Question Bank Merger)
+# Question Bank Merger
 
-🚀 **零基础也能用的题库合并工具** - 一键将多个Excel题库文件合并成一个Word文档或Excel文件
+A powerful tool for merging multiple Excel question banks into unified documents. Designed for educators, trainers, and educational institutions who need to consolidate scattered question banks.
 
-特别适合教育工作者、培训师、学生等需要整理题库的用户。**无需任何编程基础，会使用电脑即可！**
+## Overview
 
-## ⭐ 为什么选择这个工具？
+Question Bank Merger automatically detects and merges Excel files containing questions, supporting various formats and generating both Word and Excel outputs. No programming knowledge required.
 
-- ✅ **全自动智能识别** - 不用手配置，自动检测你的Excel格式
-- ✅ **一键运行** - 双击即可使用，就像打开软件一样简单
-- ✅ **支持中文** - 完美支持中国大学的题库格式
-- ✅ **出错友好** - 详细的错误提示，帮你快速解决问题
+## Features
 
-## 功能特点
+- **Smart Detection**: Automatically identifies Excel file formats and column structures
+- **One-Click Operation**: Simply run the tool and let it handle everything
+- **Multiple Output Formats**: Generate both Excel and Word documents
+- **Flexible Configuration**: Support for various question bank formats through JSON configuration
+- **Error Handling**: Comprehensive error reporting and troubleshooting guidance
+- **Chinese Language Support**: Optimized for Chinese educational question formats
 
-- **自动合并**：自动合并目录中的所有题库Excel文件
-- **多格式输出**：支持生成Excel和Word两种格式
-- **灵活配置**：通过配置文件适应不同的Excel格式
-- **智能检测**：自动识别表头位置和数据结构
-- **统计报告**：生成详细的合并统计信息
-- **中文支持**：完美支持中文内容和格式
+## Quick Start
 
-## 🎯 新手使用教程（无需任何配置！）
+### Prerequisites
 
-### 方法一：一键运行（最简单！）
+- Python 3.7 or higher
+- Required packages: pandas, openpyxl, python-docx
 
-1. **下载工具**
+### Installation
+
+1. Clone the repository
    ```bash
    git clone https://github.com/Marshmallowc/question-bank-merger.git
    cd question-bank-merger
    ```
 
-2. **双击运行**
-   - Windows用户：双击 `run.py` 或运行 `python run.py`
-   - Mac/Linux用户：运行 `python3 run.py`
+2. Install dependencies
+   ```bash
+   pip install pandas openpyxl python-docx
+   ```
 
-3. **跟着提示走**
-   - 工具会自动检测你的Excel文件
-   - 选择要合并的文件
-   - 自动合并并生成结果
+3. Prepare your Excel question bank files in the project directory
 
-4. **查看结果**
-   - 合并完成！文件保存在 `output` 文件夹
+4. Run the merger
+   ```bash
+   python run.py
+   ```
 
-### 方法二：传统方式（适合有经验的用户）
+## Usage
 
-#### 1. 安装依赖
+### Basic Usage (Recommended for Beginners)
 
-```bash
-pip install pandas openpyxl python-docx
-```
+The tool provides an interactive interface that guides you through the process:
 
-#### 2. 准备题库文件
+1. Place your Excel files in the project directory
+2. Run `python run.py`
+3. Follow the on-screen instructions to select files
+4. Generated files will be saved in the `output/` directory
 
-将你的Excel题库文件放在项目目录中，支持的模式：
-- `*_习题导出.xlsx`
-- `*questions*.xlsx`
-- `*题库*.xlsx`
-- `*.xlsx`
+### Advanced Usage
 
-#### 3. 运行合并
+For more control over the merging process:
 
 ```bash
-# 使用默认配置
+# Use default configuration
 python src/merger.py
 
-# 指定配置文件
-python src/merger.py --config config/config_standard.json
+# Specify custom configuration
+python src/merger.py --config config/my_config.json
 
-# 指定输入目录和文件模式
-python src/merger.py --input /path/to/questions --pattern "*题库*.xlsx"
+# Specify input directory and file pattern
+python src/merger.py --input /path/to/questions --pattern "chapter*.xlsx"
+
+# Generate only Word output
+python src/merger.py --word-only
+
+# Generate only Excel output
+python src/merger.py --excel-only
 ```
 
-#### 4. 查看输出
+## Configuration
 
-合并后的文件将保存在 `output/` 目录中：
-- `merged_questions.xlsx` - Excel格式
-- `merged_questions.docx` - Word格式
+The tool supports various Excel formats through JSON configuration files. Default configurations are included:
 
-### 常见问题快速解决
+- `config/config.json` - Chinese question bank format (with header description row)
+- `config/config_standard.json` - Standard Excel format
 
-❌ **找不到文件？**
-- 确保Excel文件和工具放在同一个文件夹
-- 文件名不要包含特殊字符
+### Custom Configuration
 
-❌ **合并失败？**
-- 用Excel打开文件，另存为新的xlsx格式
-- 确保文件没有被密码保护
-
-❌ **安装依赖失败？**
-- 尝试运行 `python -m pip install --upgrade pip`
-- 或使用国内源：`pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ pandas openpyxl python-docx`
-
-## 配置说明
-
-项目包含两个预设配置：
-
-### 1. config.json (默认配置)
-适合中国大学的题库格式：
-- 第一行是说明文字
-- 第二行是列名（题型、题干、正确答案等）
-- 第三行开始是数据
-
-### 2. config_standard.json (标准格式)
-适合标准Excel格式：
-- 第一行是列名
-- 第二行开始是数据
-
-### 自定义配置
-
-你可以创建自己的配置文件，示例：
+Create a custom JSON configuration file to match your specific format:
 
 ```json
 {
   "excel_settings": {
     "has_header_row": true,
-    "header_row_index": 0,
-    "data_start_row": 1,
-    "skip_description_row": false
+    "header_row_index": 1,
+    "data_start_row": 2,
+    "skip_description_row": true
   },
   "column_mapping": {
     "question_type": "题型",
@@ -128,249 +103,105 @@ python src/merger.py --input /path/to/questions --pattern "*题库*.xlsx"
     "options": ["选项A", "选项B", "选项C", "选项D", "选项E"]
   },
   "output_settings": {
-    "excel_filename": "output/my_questions.xlsx",
-    "word_filename": "output/my_questions.docx",
-    "include_analysis": true,
-    "include_difficulty": true
-  },
-  "file_patterns": [
-    "*.xlsx"
-  ]
+    "excel_filename": "output/merged_questions.xlsx",
+    "word_filename": "output/merged_questions.docx"
+  }
 }
 ```
 
-## 命令行参数
+## Supported Question Formats
 
-```bash
-python src/merger.py [选项]
+- Multiple Choice Questions
+- True/False Questions
+- Fill in the Blanks
+- Short Answer Questions
+- Essay Questions
+- Custom question types
 
-选项：
-  --config PATH     配置文件路径 (默认: config/config.json)
-  --input PATH      输入目录 (默认: 当前目录)
-  --pattern PATTERN 文件匹配模式
-  --output-excel    Excel输出文件路径
-  --output-word     Word输出文件路径
-  --word-only       只生成Word文档
-  --excel-only      只生成Excel文件
-```
+## Troubleshooting
 
-## 使用场景与配置示例
+### Common Issues
 
-### 场景一：标准中文题库格式
+**Files not detected**
+- Ensure Excel files are in the correct directory
+- Check file extensions (.xlsx or .xls)
+- Verify files are not password-protected
 
-假设你的Excel文件具有以下格式：
+**Merge failures**
+- Try resaving Excel files in .xlsx format
+- Check for corrupted files
+- Use the debug tool: `python debug_excel.py your_file.xlsx`
 
-| 题型 | 题干 | 正确答案 | 解析 | 分值 | 难度系数 | 选项A | 选项B | 选项C | 选项D | 选项E |
-|------|------|----------|------|------|----------|-------|-------|-------|-------|-------|
-| 单选题 | 下列哪个是Python的特点？ | B | Python是解释型语言 | 1.0 | 1 | 编译型语言 | 解释型语言 | 汇编语言 | 机器语言 | |
-| 多选题 | Python支持哪些数据类型？ | ABCD | Python支持多种数据类型 | 2.0 | 2 | 整数 | 字符串 | 列表 | 字典 | 集合 |
+**Dependency installation errors**
+- Update pip: `python -m pip install --upgrade pip`
+- Use alternative pip source if needed:
+  ```bash
+  pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ pandas openpyxl python-docx
+  ```
 
-**使用默认配置即可**：
-```bash
-python src/merger.py
-```
+## Examples
 
-### 场景二：英文标准格式
+### Example 1: University Question Banks
 
-假设你的Excel文件具有英文列名：
+Your Excel files might look like this:
 
-| Question Type | Question | Answer | Analysis | Score | Option A | Option B | Option C | Option D |
-|---------------|----------|--------|----------|-------|----------|----------|----------|----------|
-| Multiple Choice | What is Python? | B | Python is an interpreted language | 1 | Compiled language | Interpreted language | Assembly language | Machine language |
+| 题型 | 题干 | 正确答案 | 选项A | 选项B | 选项C | 选项D |
+|------|------|----------|-------|-------|-------|-------|
+| 单选题 | 下列哪个是Python的特点？ | B | 编译型语言 | 解释型语言 | 汇编语言 | 机器语言 |
 
-**使用标准配置**：
-```bash
-python src/merger.py --config config/config_standard.json
-```
+The tool will automatically detect this format and merge multiple such files.
 
-### 场景三：自定义列名
+### Example 2: English Questions
 
-如果你的Excel文件使用了不同的列名，例如：
+| Question Type | Question | Answer | Option A | Option B | Option C | Option D |
+|---------------|----------|--------|----------|----------|----------|----------|
+| Multiple Choice | What is 2+2? | B | 3 | 4 | 5 | 6 |
 
-| 问题类型 | 题目内容 | 答案 | 选项1 | 选项2 | 选项3 | 选项4 |
-|----------|----------|------|-------|-------|-------|-------|
-| 选择题 | 首都是哪里？ | A | 北京 | 上海 | 广州 | 深圳 |
-
-**需要创建自定义配置文件** `config/my_config.json`：
-
-```json
-{
-  "excel_settings": {
-    "has_header_row": true,
-    "header_row_index": 0,
-    "data_start_row": 1,
-    "skip_description_row": false
-  },
-  "column_mapping": {
-    "question_type": "问题类型",
-    "question_text": "题目内容",
-    "correct_answer": "答案",
-    "analysis": "解析",
-    "score": "分值",
-    "difficulty": "难度",
-    "options": ["选项1", "选项2", "选项3", "选项4"]
-  },
-  "output_settings": {
-    "excel_filename": "output/custom_merged.xlsx",
-    "word_filename": "output/custom_merged.docx",
-    "include_analysis": false,
-    "include_difficulty": false
-  },
-  "file_patterns": [
-    "*.xlsx",
-    "*题库*.xlsx"
-  ]
-}
-```
-
-**使用自定义配置**：
-```bash
-python src/merger.py --config config/my_config.json
-```
-
-## 调试指南
-
-### 常见问题及解决方案
-
-#### 1. 列名不匹配错误
-
-**错误信息**：
-```
-KeyError: '题型'
-```
-
-**原因**：配置文件中的列名与实际Excel列名不匹配。
-
-**解决步骤**：
-
-1. **使用调试工具分析Excel文件**：
-   ```bash
-   python debug_excel.py your_file.xlsx
-   ```
-   这个工具会自动分析你的Excel文件格式，并推荐合适的配置。
-
-2. **或者手动查看列名**：
-   ```python
-   import pandas as pd
-   df = pd.read_excel('your_file.xlsx', engine='openpyxl')
-   print(list(df.columns))
-   ```
-
-3. **修改配置文件**，将 `column_mapping` 中的值改为实际的列名。
-
-4. **如果第一行是说明文字**，确保配置正确：
-   ```json
-   "excel_settings": {
-     "skip_description_row": true,
-     "description_row_index": 0,
-     "header_row_index": 1
-   }
-   ```
-
-#### 2. 答案列为空
-
-**可能原因**：
-- 答案列的名称配置错误
-- 答案数据在Excel中确实为空
-
-**解决方案**：
-1. 确认配置中的 `"correct_answer"` 值与Excel中的答案列名完全一致
-2. 检查Excel文件中答案列是否有数据
-
-#### 3. 多个文件读取失败
-
-**错误信息**：
-```
-找到 5 个文件
-正在读取: file1.xlsx
-  ✗ 读取失败: ...
-```
-
-**可能原因**：
-- 文件格式不是标准的xlsx格式
-- 文件损坏
-- Excel文件有特殊的保护
-
-**解决方案**：
-1. 用Excel打开文件，另存为新的xlsx文件
-2. 确保文件没有被密码保护
-3. 检查文件是否可以正常打开
-
-#### 4. 输出文件格式错误
-
-**问题**：生成的Word或Excel文件格式异常
-
-**解决步骤**：
-1. 确保已安装所有依赖：
-   ```bash
-   pip install pandas openpyxl python-docx
-   ```
-2. 检查输出目录权限
-3. 尝试使用绝对路径作为输出路径
-
-### 使用示例
-
-### 示例1：合并当前目录的所有题库文件
-
-```bash
-python src/merger.py
-```
-
-### 示例2：合并指定目录的特定格式文件
-
-```bash
-python src/merger.py --input /path/to/excel --pattern "chapter*.xlsx"
-```
-
-### 示例3：只生成Word文档
-
-```bash
-python src/merger.py --word-only
-```
-
-### 示例4：使用自定义配置和输出路径
-
-```bash
-python src/merger.py \
-  --config config/my_config.json \
-  --output-excel output/biology_questions.xlsx \
-  --output-word output/biology_questions.docx
-```
-
-## 项目结构
+## Project Structure
 
 ```
 question-bank-merger/
 ├── src/
-│   └── merger.py          # 主程序
+│   └── merger.py          # Core merging logic
 ├── config/
-│   ├── config.json        # 默认配置（中文题库格式）
-│   └── config_standard.json # 标准配置
+│   ├── config.json        # Chinese format configuration
+│   └── config_standard.json # Standard format configuration
 ├── examples/
-│   └── sample_questions/  # 示例数据
-├── output/                # 输出目录
-├── README.md              # 说明文档
-├── requirements.txt       # 依赖列表
-└── .gitignore            # Git忽略文件
+│   └── sample_questions/  # Sample data for testing
+├── output/                # Generated output files
+├── run.py                # User-friendly interface
+├── debug_excel.py        # Excel format analysis tool
+├── main.py               # Interactive mode
+└── README.md             # This file
 ```
 
-## 支持的题型
+## Development
 
-- 单选题
-- 多选题
-- 判断题
-- 填空题
-- 主观题
-- 其他自定义题型
+### Testing
 
-## 贡献
+Run the test suite with sample data:
+```bash
+python create_samples.py
+python src/merger.py --input examples/sample_questions
+```
 
-欢迎提交Issue和Pull Request来改进这个工具！
+### Contributing
 
-## 许可证
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-MIT License - 详见 LICENSE 文件
+## License
 
-## Star History
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
-如果这个项目对你有帮助，请给个Star支持一下！
+## Changelog
+
+### v1.0.0
+- Initial release with core merging functionality
+- Support for multiple Excel formats
+- Word and Excel output generation
+- Smart format detection
+- User-friendly interface
