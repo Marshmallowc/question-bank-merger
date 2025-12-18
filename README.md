@@ -1,89 +1,89 @@
-# Question Bank Merger
+# 题库合并工具
 
-A powerful tool for merging multiple Excel question banks into unified documents. Designed for educators, trainers, and educational institutions who need to consolidate scattered question banks.
+一个强大的题库合并工具，可以将多个Excel格式的题库文件合并成统一的文档。专为教育工作者、培训师和需要整合分散题库的教育机构设计。
 
-## Overview
+## 概述
 
-Question Bank Merger automatically detects and merges Excel files containing questions, supporting various formats and generating both Word and Excel outputs. No programming knowledge required.
+题库合并工具能够自动检测并合并包含题目数据的Excel文件，支持多种格式，可生成Word和Excel两种输出格式。无需任何编程知识即可使用。
 
-## Features
+## 功能特性
 
-- **Smart Detection**: Automatically identifies Excel file formats and column structures
-- **One-Click Operation**: Simply run the tool and let it handle everything
-- **Multiple Output Formats**: Generate both Excel and Word documents
-- **Flexible Configuration**: Support for various question bank formats through JSON configuration
-- **Error Handling**: Comprehensive error reporting and troubleshooting guidance
-- **Chinese Language Support**: Optimized for Chinese educational question formats
+- **智能检测**：自动识别Excel文件格式和列结构
+- **一键操作**：运行工具即可自动完成所有工作
+- **多种输出格式**：生成Excel和Word文档
+- **灵活配置**：通过JSON配置文件支持各种题库格式
+- **错误处理**：完善的错误报告和故障排除指导
+- **中文支持**：针对中文教育题库格式进行优化
 
-## Quick Start
+## 快速开始
 
-### Prerequisites
+### 环境要求
 
-- Python 3.7 or higher
-- Required packages: pandas, openpyxl, python-docx
+- Python 3.7 或更高版本
+- 必需的包：pandas, openpyxl, python-docx
 
-### Installation
+### 安装
 
-1. Clone the repository
+1. 克隆仓库
    ```bash
    git clone https://github.com/Marshmallowc/question-bank-merger.git
    cd question-bank-merger
    ```
 
-2. Install dependencies
+2. 安装依赖
    ```bash
    pip install pandas openpyxl python-docx
    ```
 
-3. Prepare your Excel question bank files in the project directory
+3. 将Excel题库文件放入项目目录
 
-4. Run the merger
+4. 运行合并工具
    ```bash
    python run.py
    ```
 
-## Usage
+## 使用方法
 
-### Basic Usage (Recommended for Beginners)
+### 基础使用（推荐新手使用）
 
-The tool provides an interactive interface that guides you through the process:
+工具提供交互式界面，引导您完成整个过程：
 
-1. Place your Excel files in the project directory
-2. Run `python run.py`
-3. Follow the on-screen instructions to select files
-4. Generated files will be saved in the `output/` directory
+1. 将Excel文件放入项目目录
+2. 运行 `python run.py`
+3. 按照屏幕提示选择要合并的文件
+4. 生成的文件将保存在 `output/` 目录中
 
-### Advanced Usage
+### 高级使用
 
-For more control over the merging process:
+如需更多控制，可以使用命令行参数：
 
 ```bash
-# Use default configuration
+# 使用默认配置
 python src/merger.py
 
-# Specify custom configuration
+# 指定自定义配置
 python src/merger.py --config config/my_config.json
 
-# Specify input directory and file pattern
+# 指定输入目录和文件模式
 python src/merger.py --input /path/to/questions --pattern "chapter*.xlsx"
 
-# Generate only Word output
+# 仅生成Word文档
 python src/merger.py --word-only
 
-# Generate only Excel output
+# 仅生成Excel文档
 python src/merger.py --excel-only
 ```
 
-## Configuration
+## 配置说明
 
-The tool supports various Excel formats through JSON configuration files. Default configurations are included:
+工具通过JSON配置文件支持多种Excel格式。包含的默认配置：
 
-- `config/config.json` - Chinese question bank format (with header description row)
-- `config/config_standard.json` - Standard Excel format
+- `config/config.json` - 中文题库格式（包含表头说明行）
+- `config/config_standard.json` - 标准Excel格式
 
-### Custom Configuration
+### 自定义配置
 
-Create a custom JSON configuration file to match your specific format:
+创建自定义JSON配置文件以匹配特定格式：
 
 ```json
 {
@@ -109,99 +109,99 @@ Create a custom JSON configuration file to match your specific format:
 }
 ```
 
-## Supported Question Formats
+## 支持的题型
 
-- Multiple Choice Questions
-- True/False Questions
-- Fill in the Blanks
-- Short Answer Questions
-- Essay Questions
-- Custom question types
+- 单选题
+- 判断题
+- 填空题
+- 简答题
+- 论述题
+- 自定义题型
 
-## Troubleshooting
+## 故障排除
 
-### Common Issues
+### 常见问题
 
-**Files not detected**
-- Ensure Excel files are in the correct directory
-- Check file extensions (.xlsx or .xls)
-- Verify files are not password-protected
+**文件未检测到**
+- 确保Excel文件在正确的目录中
+- 检查文件扩展名（.xlsx 或 .xls）
+- 确认文件没有密码保护
 
-**Merge failures**
-- Try resaving Excel files in .xlsx format
-- Check for corrupted files
-- Use the debug tool: `python debug_excel.py your_file.xlsx`
+**合并失败**
+- 尝试将Excel文件另存为.xlsx格式
+- 检查文件是否损坏
+- 使用调试工具：`python debug_excel.py your_file.xlsx`
 
-**Dependency installation errors**
-- Update pip: `python -m pip install --upgrade pip`
-- Use alternative pip source if needed:
+**依赖安装错误**
+- 更新pip：`python -m pip install --upgrade pip`
+- 如需要可使用备用源：
   ```bash
   pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ pandas openpyxl python-docx
   ```
 
-## Examples
+## 使用示例
 
-### Example 1: University Question Banks
+### 示例1：大学题库
 
-Your Excel files might look like this:
+您的Excel文件可能如下所示：
 
 | 题型 | 题干 | 正确答案 | 选项A | 选项B | 选项C | 选项D |
 |------|------|----------|-------|-------|-------|-------|
 | 单选题 | 下列哪个是Python的特点？ | B | 编译型语言 | 解释型语言 | 汇编语言 | 机器语言 |
 
-The tool will automatically detect this format and merge multiple such files.
+工具将自动检测此格式并合并多个类似文件。
 
-### Example 2: English Questions
+### 示例2：英文题目
 
 | Question Type | Question | Answer | Option A | Option B | Option C | Option D |
 |---------------|----------|--------|----------|----------|----------|----------|
 | Multiple Choice | What is 2+2? | B | 3 | 4 | 5 | 6 |
 
-## Project Structure
+## 项目结构
 
 ```
 question-bank-merger/
 ├── src/
-│   └── merger.py          # Core merging logic
+│   └── merger.py          # 核心合并逻辑
 ├── config/
-│   ├── config.json        # Chinese format configuration
-│   └── config_standard.json # Standard format configuration
+│   ├── config.json        # 中文格式配置
+│   └── config_standard.json # 标准格式配置
 ├── examples/
-│   └── sample_questions/  # Sample data for testing
-├── output/                # Generated output files
-├── run.py                # User-friendly interface
-├── debug_excel.py        # Excel format analysis tool
-├── main.py               # Interactive mode
-└── README.md             # This file
+│   └── sample_questions/  # 测试用示例数据
+├── output/                # 生成的输出文件
+├── run.py                # 用户友好界面
+├── debug_excel.py        # Excel格式分析工具
+├── main.py               # 交互模式
+└── README.md             # 本文件
 ```
 
-## Development
+## 开发
 
-### Testing
+### 测试
 
-Run the test suite with sample data:
+使用示例数据运行测试：
 ```bash
 python create_samples.py
 python src/merger.py --input examples/sample_questions
 ```
 
-### Contributing
+### 贡献
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+1. Fork 本仓库
+2. 创建功能分支
+3. 进行修改
+4. 添加测试（如适用）
+5. 提交Pull Request
 
-## License
+## 许可证
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+本项目采用 MIT 许可证。详见 [LICENSE](LICENSE) 文件。
 
-## Changelog
+## 更新日志
 
 ### v1.0.0
-- Initial release with core merging functionality
-- Support for multiple Excel formats
-- Word and Excel output generation
-- Smart format detection
-- User-friendly interface
+- 初始版本，包含核心合并功能
+- 支持多种Excel格式
+- Word和Excel输出生成
+- 智能格式检测
+- 用户友好界面
