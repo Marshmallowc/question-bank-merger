@@ -21,12 +21,12 @@ def detect_and_auto_merge():
     excel_files = glob.glob("*.xlsx") + glob.glob("*.xls")
 
     if not excel_files:
-        print("\n❌ 未找到任何Excel文件！")
+        print("\n[ERROR] 未找到任何Excel文件！")
         print("请确保你的题库文件（.xlsx或.xls格式）放在当前目录下")
         input("\n按回车键退出...")
         return
 
-    print(f"\n✅ 找到 {len(excel_files)} 个Excel文件：")
+    print(f"\n[INFO] 找到 {len(excel_files)} 个Excel文件：")
     for i, file in enumerate(excel_files, 1):
         print(f"  {i}. {file}")
 
@@ -52,7 +52,7 @@ def detect_and_auto_merge():
             print("\n未找到题库文件，将使用所有Excel文件")
             selected_files = excel_files
         else:
-            print(f"\n✅ 筛选出 {len(selected_files)} 个题库文件")
+            print(f"\n[INFO] 筛选出 {len(selected_files)} 个题库文件")
     else:
         print("\n请输入要合并的文件编号（用空格分隔）：")
         for i, file in enumerate(excel_files, 1):
@@ -75,12 +75,12 @@ def detect_and_auto_merge():
     success = merge_with_auto_config(selected_files, format_type)
 
     if success:
-        print("\n✅ 合并成功！")
+        print("\n[SUCCESS] 合并成功！")
         print("\n生成的文件：")
         if os.path.exists("output/auto_merged.xlsx"):
-            print("  📊 Excel文件: output/auto_merged.xlsx")
+            print("  - Excel文件: output/auto_merged.xlsx")
         if os.path.exists("output/auto_merged.docx"):
-            print("  📝 Word文件: output/auto_merged.docx")
+            print("  - Word文件: output/auto_merged.docx")
 
         # 询问是否打开文件
         open_file = input("\n是否打开生成的文件？(y/n): ").strip().lower()
@@ -97,7 +97,7 @@ def detect_and_auto_merge():
                 else:  # Linux
                     subprocess.run(["xdg-open", "output/auto_merged.xlsx"])
     else:
-        print("\n❌ 合并失败，请检查文件格式")
+        print("\n[ERROR] 合并失败，请检查文件格式")
 
     input("\n按回车键退出...")
 
@@ -161,19 +161,19 @@ def merge_with_auto_config(files, format_type):
             # 保存文件
             merger.save_excel()
             if os.path.exists("output/auto_merged.xlsx"):
-                print(f"✅ 成功合并 {len(merged_data)} 道题目")
+                print(f"[SUCCESS] 成功合并 {len(merged_data)} 道题目")
 
                 # 尝试保存Word文档
                 try:
                     merger.save_word()
                 except:
-                    print("⚠️ Word文档生成失败，但Excel文件已成功生成")
+                    print("[WARNING] Word文档生成失败，但Excel文件已成功生成")
 
                 return True
         return False
 
     except Exception as e:
-        print(f"❌ 错误: {e}")
+        print(f"[ERROR] 错误: {e}")
         return False
 
 def create_default_config(config_file, format_type):
@@ -261,9 +261,9 @@ def install_dependencies():
         import subprocess
         try:
             subprocess.run([sys.executable, '-m', 'pip', 'install'] + missing, check=True)
-            print("\n✅ 依赖安装完成！")
+            print("\n[SUCCESS] 依赖安装完成！")
         except subprocess.CalledProcessError:
-            print("\n❌ 自动安装失败，请手动安装")
+            print("\n[ERROR] 自动安装失败，请手动安装")
             print(f"pip install {' '.join(missing)}")
             return False
 

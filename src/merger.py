@@ -128,11 +128,11 @@ class QuestionBankMerger:
             filename = Path(filepath).stem
             df["来源文件"] = filename
 
-            print(f"  ✓ 成功读取 {len(df)} 道题目")
+            print(f"  [SUCCESS] 成功读取 {len(df)} 道题目")
             return df
 
         except Exception as e:
-            print(f"  ✗ 读取失败: {e}")
+            print(f"  [ERROR] 读取失败: {e}")
             return pd.DataFrame()
 
     def clean_data(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -142,7 +142,7 @@ class QuestionBankMerger:
 
         # 检查该列是否存在
         if question_type_col not in df.columns:
-            print(f"  ✗ 未找到题型列: '{question_type_col}'")
+            print(f"  [ERROR] 未找到题型列: '{question_type_col}'")
             print(f"  可用的列: {list(df.columns)}")
             return pd.DataFrame()
 
@@ -234,7 +234,7 @@ class QuestionBankMerger:
         os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
 
         self.merged_data.to_excel(output_path, index=False, engine='openpyxl')
-        print(f"✓ Excel文件已保存: {output_path}")
+        print(f"[SUCCESS] Excel文件已保存: {output_path}")
 
     def save_word(self, output_path: str = None):
         """保存为Word文档"""
@@ -307,7 +307,7 @@ class QuestionBankMerger:
             doc.add_paragraph()  # 空行
 
         doc.save(output_path)
-        print(f"✓ Word文档已保存: {output_path}")
+        print(f"[SUCCESS] Word文档已保存: {output_path}")
 
     def generate_report(self) -> Dict:
         """生成统计报告"""

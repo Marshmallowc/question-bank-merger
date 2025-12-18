@@ -69,7 +69,7 @@ def main():
     merger.save_excel()
     merger.save_word()
 
-    print("\n✓ 完成！文件已保存到 output/ 目录")
+    print("\n[SUCCESS] 完成！文件已保存到 output/ 目录")
 
 if __name__ == "__main__":
     main()
