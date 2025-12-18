@@ -1,0 +1,28 @@
+{
+  "excel_settings": {
+    "has_header_row": true,
+    "header_row_index": 0,
+    "data_start_row": 1,
+    "skip_description_row": false,
+    "description_row_index": -1
+  },
+  "column_mapping": {
+    "question_type": "Question Type",
+    "question_text": "Question",
+    "correct_answer": "Answer",
+    "analysis": "Analysis",
+    "score": "Score",
+    "difficulty": "Difficulty",
+    "options": ["Option A", "Option B", "Option C", "Option D"]
+  },
+  "output_settings": {
+    "excel_filename": "output/standard_merged_questions.xlsx",
+    "word_filename": "output/standard_merged_questions.docx",
+    "include_analysis": true,
+    "include_difficulty": true
+  },
+  "file_patterns": [
+    "*.xlsx",
+    "*.xls"
+  ]
+}

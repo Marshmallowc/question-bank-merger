@@ -1,0 +1,30 @@
+{
+  "excel_settings": {
+    "has_header_row": true,
+    "header_row_index": 1,
+    "data_start_row": 2,
+    "skip_description_row": true,
+    "description_row_index": 0
+  },
+  "column_mapping": {
+    "question_type": "题型",
+    "question_text": "题干",
+    "correct_answer": "正确答案",
+    "analysis": "解析",
+    "score": "分值",
+    "difficulty": "难度系数",
+    "options": ["选项A", "选项B", "选项C", "选项D", "选项E"]
+  },
+  "output_settings": {
+    "excel_filename": "output/merged_questions.xlsx",
+    "word_filename": "output/merged_questions.docx",
+    "include_analysis": true,
+    "include_difficulty": true
+  },
+  "file_patterns": [
+    "*_习题导出.xlsx",
+    "*questions*.xlsx",
+    "*题库*.xlsx",
+    "*.xlsx"
+  ]
+}
