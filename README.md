@@ -1,6 +1,15 @@
 # 题库合并工具 (Question Bank Merger)
 
-一个通用的题库合并工具，可以将多个Excel格式的题库文件合并成一个统一的Word文档或Excel文件。该工具特别适合教育机构、培训中心、教师等需要整理分散题库的用户。
+🚀 **零基础也能用的题库合并工具** - 一键将多个Excel题库文件合并成一个Word文档或Excel文件
+
+特别适合教育工作者、培训师、学生等需要整理题库的用户。**无需任何编程基础，会使用电脑即可！**
+
+## ⭐ 为什么选择这个工具？
+
+- ✅ **全自动智能识别** - 不用手配置，自动检测你的Excel格式
+- ✅ **一键运行** - 双击即可使用，就像打开软件一样简单
+- ✅ **支持中文** - 完美支持中国大学的题库格式
+- ✅ **出错友好** - 详细的错误提示，帮你快速解决问题
 
 ## 功能特点
 
@@ -11,22 +20,37 @@
 - **统计报告**：生成详细的合并统计信息
 - **中文支持**：完美支持中文内容和格式
 
-## 安装依赖
+## 🎯 新手使用教程（无需任何配置！）
+
+### 方法一：一键运行（最简单！）
+
+1. **下载工具**
+   ```bash
+   git clone https://github.com/Marshmallowc/question-bank-merger.git
+   cd question-bank-merger
+   ```
+
+2. **双击运行**
+   - Windows用户：双击 `run.py` 或运行 `python run.py`
+   - Mac/Linux用户：运行 `python3 run.py`
+
+3. **跟着提示走**
+   - 工具会自动检测你的Excel文件
+   - 选择要合并的文件
+   - 自动合并并生成结果
+
+4. **查看结果**
+   - 合并完成！文件保存在 `output` 文件夹
+
+### 方法二：传统方式（适合有经验的用户）
+
+#### 1. 安装依赖
 
 ```bash
 pip install pandas openpyxl python-docx
 ```
 
-## 快速开始
-
-### 1. 克隆项目
-
-```bash
-git clone https://github.com/your-username/question-bank-merger.git
-cd question-bank-merger
-```
-
-### 2. 准备题库文件
+#### 2. 准备题库文件
 
 将你的Excel题库文件放在项目目录中，支持的模式：
 - `*_习题导出.xlsx`
@@ -34,7 +58,7 @@ cd question-bank-merger
 - `*题库*.xlsx`
 - `*.xlsx`
 
-### 3. 运行合并
+#### 3. 运行合并
 
 ```bash
 # 使用默认配置
@@ -47,11 +71,25 @@ python src/merger.py --config config/config_standard.json
 python src/merger.py --input /path/to/questions --pattern "*题库*.xlsx"
 ```
 
-### 4. 查看输出
+#### 4. 查看输出
 
 合并后的文件将保存在 `output/` 目录中：
 - `merged_questions.xlsx` - Excel格式
 - `merged_questions.docx` - Word格式
+
+### 常见问题快速解决
+
+❌ **找不到文件？**
+- 确保Excel文件和工具放在同一个文件夹
+- 文件名不要包含特殊字符
+
+❌ **合并失败？**
+- 用Excel打开文件，另存为新的xlsx格式
+- 确保文件没有被密码保护
+
+❌ **安装依赖失败？**
+- 尝试运行 `python -m pip install --upgrade pip`
+- 或使用国内源：`pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ pandas openpyxl python-docx`
 
 ## 配置说明
 
